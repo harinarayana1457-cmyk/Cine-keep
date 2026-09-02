@@ -1,67 +1,117 @@
-# CineKeep 🍿📺
+<div align="center">
 
-A vibrant, responsive, and premium Chrome Extension built with Manifest V3 to catalog, rate, and manage your favorite movies and TV shows. CineKeep features a sleek dark-mode glassmorphic interface with neon gradient borders and smooth micro-animations.
+# 🍿 CINEKEEP
+### Elegant Dark-Mode Cinema & TV Watchlist Chrome Extension (Manifest V3)
 
----
+[![Chrome Extension](https://img.shields.io/badge/Chrome%20Extension-Manifest%20V3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![CSS3](https://img.shields.io/badge/Styling-Glassmorphism%20CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![Privacy](https://img.shields.io/badge/Privacy-100%25%20Local%20Storage-success?style=for-the-badge&logo=shield&logoColor=white)](https://github.com/harinarayana1457-cmyk/Cine-keep)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-## ✨ Features
+<p align="center">
+  <b>CineKeep</b> is a vibrant, responsive Chrome Extension engineered to catalog, rate, and curate movies and TV shows right from your browser toolbar. Featuring a sleek glassmorphic dark-mode interface, real-time poster previews, smart category analytics, and complete offline privacy with zero external tracking.
+</p>
 
-- **Premium UI/UX:** Clean, modern dark mode using glassmorphic card designs, custom scrollbars, and vibrant neon gradients (Pink/Purple for Movies, Cyan/Blue for TV Shows).
-- **Interactive Rating System:** Dynamic 5-star rating picker with custom textual feedback (e.g. *Masterpiece! 🏆*, *Good choice 👍*).
-- **Live Search & Filter:** Instant search capability across titles, reviews, and genres. Filter by category (Movies, TV Shows, or All) with active chips.
-- **Smart Sorting:** Sort your watchlist by Date Added, Star Rating (highest/lowest), or Title (Alphabetical A-Z/Z-A).
-- **Live Cover Art Previews:** Add a custom poster image URL to render rich visual cards, or enjoy a dynamic gradient fallback featuring the movie's initials.
-- **Insightful Analytics:** Live computation of your total watchlist count, average rating across all items, type split, and top 4 genres.
-- **Backup & Restore:** Easily export your library to a `.json` backup file or restore it anytime. Wiping data is safeguarded with double-confirmation alerts.
-- **Zero-Dependency & Offline First:** Works 100% offline, load times are instantaneous, and it falls back safely to browser LocalStorage when debugging outside an extension context.
+[✨ Key Features](#-key-features) • [🏛️ Architecture](#-architecture--data-flow) • [🚀 Quickstart](#️-installation--setup) • [📖 Usage Guide](#-how-to-use) • [📁 Project Structure](#-project-structure)
 
----
-
-## 🛠️ Installation
-
-Follow these simple steps to install CineKeep in your Google Chrome browser:
-
-1. **Clone or Download** this repository to your local machine:
-   ```bash
-   git clone https://github.com/harinarayana1457-cmyk/Cine-keep.git
-   ```
-2. Open **Google Chrome** and navigate to the extensions page by typing:
-   ```text
-   chrome://extensions/
-   ```
-3. Enable **Developer mode** using the toggle switch in the top-right corner.
-4. Click the **Load unpacked** button in the top-left corner.
-5. In the file explorer, select the folder where this project is located (the folder containing `manifest.json`).
-6. Click the Extensions (puzzle) icon in your Chrome toolbar, find **CineKeep**, and click the **Pin** icon to keep it accessible!
+</div>
 
 ---
 
-## 📸 How to Use
+## 🌟 Key Features
+
+* **🎨 Glassmorphic Neon Dark Mode**: Aesthetic visual styling with vibrant neon gradient borders (Pink/Purple for Movies, Cyan/Blue for TV series) and smooth micro-interactions.
+* **⭐ Interactive Star Rating Engine**: Custom 5-star scoring with instant textual sentiment feedback (*Masterpiece! 🏆*, *Great Watch! 👍*).
+* **🔍 Instant Search & Deep Filtering**: Real-time fuzzy query engine matching titles, review notes, and tags, with 1-click filter chips (All, Movies, TV Shows).
+* **📊 Visual Library Analytics**: Live dashboard metrics computing your total watchlist count, average rating across all media, media distribution split, and top 4 genres.
+* **🖼️ Dynamic Poster Art Previews**: Paste image URLs to display rich cover thumbnails, with automatic fallback to high-contrast initials gradient cards.
+* **💾 Safe JSON Backup & Restore**: One-click JSON data export and import for seamless migration across browsers, complete with accidental wipe protection.
+* **🔒 100% Offline & Private**: Zero cloud tracking or login requirements — your watchlist stays entirely in your browser's secure `chrome.storage.local`.
+
+---
+
+## 🏛️ Architecture & Data Flow
+
+```mermaid
+flowchart TD
+    subgraph UI ["Popup Glassmorphism Frontend"]
+        A[popup.html / popup.css] --> B[Filter Chips & Live Search]
+        A --> C[Add / Edit Entry Form]
+        A --> D[Library Grid & Rating Stars]
+        A --> E[Visual Analytics Tab]
+    end
+
+    subgraph StateManager ["JavaScript Application Core (popup.js)"]
+        B & C & D --> F[State Controller & Event Bus]
+        F --> G[DOM Dynamic Virtual Renderer]
+        F --> H[JSON Import / Export Serializer]
+    end
+
+    subgraph Storage ["Chrome Extension Storage Engine"]
+        F <-->|Async Sync| I[(chrome.storage.local / LocalStorage)]
+    end
+```
+
+---
+
+## 🛠️ Installation & Setup
+
+### Prerequisites
+* Google Chrome, Brave, Microsoft Edge, or any Chromium-compatible browser.
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/harinarayana1457-cmyk/Cine-keep.git
+```
+
+### 2. Load into Chrome
+1. Open Google Chrome and enter `chrome://extensions/` into the URL bar.
+2. Toggle **Developer mode** to **ON** in the top-right corner.
+3. Click the **Load unpacked** button in the top-left corner.
+4. Select the cloned `Cine-keep` directory (the folder containing `manifest.json`).
+5. Pin **CineKeep** to your extensions toolbar for immediate access!
+
+---
+
+## 📖 How to Use
 
 ### Adding an Item
-1. Open the popup and navigate to the **Add New** tab.
-2. Enter the Title (required) and select whether it is a **Movie** or **TV Show**.
-3. Input optional genres (separated by commas) and write your review notes.
-4. Click stars to rate it out of 5.
-5. Paste a poster image URL to see a live preview in the preview box.
-6. Click **Save to Library** to save.
+1. Open CineKeep and select the **Add New** tab.
+2. Enter the title and select the media format (**Movie** or **TV Show**).
+3. Assign star ratings, add comma-separated genre tags, and type your personal review.
+4. Paste a poster image URL for live preview card generation.
+5. Click **Save to Library**.
 
-### Managing Your Library
-- Use the **Search Bar** or **Filter Chips** to find specific titles.
-- Hover over any card in the **Library** tab to reveal the edit (pencil) and delete (trash) action icons.
-- Click **Edit** to preload the item details into the input form.
-- Click **Delete** to remove an item. An **Undo** toast will appear at the bottom for 4 seconds if you change your mind!
+### Managing & Sorting
+* **Search**: Filter titles instantly by typing in the search box.
+* **Sorting**: Sort your catalog by *Date Added*, *Rating (Highest / Lowest)*, or *Title (A-Z)*.
+* **Edit / Delete**: Hover over any library card to reveal the pencil (edit) and trash (delete) icons. Deleted items provide a 4-second **Undo** safety toast!
 
-### Statistics & Backup
-- Access the **Stats** tab to see your profile metrics and favorite genres.
-- Use **Export JSON** to save your database locally.
-- Use **Import JSON** to restore your database from a backup file.
+### Backup & Synchronization
+* Switch to the **Stats** tab to review your media consumption habits.
+* Click **Export JSON** to download a portable backup file of your entire library.
+* Click **Import JSON** to load a backup file into any browser instance.
 
 ---
 
-## ⚙️ Technologies Used
+## 📁 Project Structure
 
-- **Manifest V3:** Modern Chrome Extension standard for security and performance.
-- **HTML5:** Semantic architecture.
-- **CSS3 (Vanilla):** Custom CSS properties, grid/flex layouts, backdrop-filters, and custom animations.
-- **JavaScript (ES6):** State Management, Chrome Storage API, File Readers for JSON importing, and live event listeners.
+```text
+Cine-keep/
+├── icons/
+│   └── icon.svg              # Vector extension logo & badge icon
+├── manifest.json             # Manifest V3 extension configuration
+├── popup.html                # Main extension interface layout
+├── popup.css                 # Glassmorphic dark aesthetic styling & animations
+├── popup.js                  # State store, search logic, and Chrome Storage sync
+├── .gitignore                # Production ignore rules
+└── README.md                 # Project documentation
+```
+
+---
+
+## 📄 License & Credits
+
+* Developed with ❤️ by **[Hari Narayana (@harinarayana1457-cmyk)](https://github.com/harinarayana1457-cmyk)**.
+* Open source under the **MIT License**.
