@@ -1,7 +1,7 @@
 <div align="center">
 
-# 🍿 CINEKEEP
-### Elegant Dark-Mode Cinema & TV Watchlist Chrome Extension (Manifest V3)
+# 🍿 Cine-keep — Glassmorphic Offline Watchlist Vault
+### Offline-First Personal Cinema Tracking Extension Built with Chromium MV3, Chrome Storage API & Glassmorphism UI
 
 [![Chrome Extension](https://img.shields.io/badge/Chrome%20Extension-Manifest%20V3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
